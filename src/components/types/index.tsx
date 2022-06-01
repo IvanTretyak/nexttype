@@ -11,3 +11,15 @@ export interface IUser {
     address: IAddress
     phone: string
 }
+
+export interface ICountriesString {
+    data: string
+}
+
+export interface ICountries {
+    city: string
+    lat: string
+    lng: string
+    country: string
+    population: string
+}
