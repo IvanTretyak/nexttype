@@ -28,7 +28,6 @@ const innerElementType = forwardRef(({style, ...rest}: any, ref: any) => {
     )
 });
 innerElementType.displayName = "insert"
-
 const Result: FC<ResultProps> = ({countries}) => {
     const Row: FC<RowProps> = ({index, style}) => (
         <Box sx={{border: "2px solid green", p: 2}} style={{

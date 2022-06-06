@@ -4,15 +4,17 @@ import Result from "../src/components/result"
 import {onLoading} from "../src/redux/slice";
 import {useAppDispatch, useAppSelector} from "../src/redux/hooks"
 
-
 export const Home: NextPage = () => {
-    const countries = useAppSelector((state) => state.country.collection)
     const dispatch = useAppDispatch()
+    const showCountries = useAppSelector((state) => state.country.showCollection)
+
+
     useEffect(() => {
         dispatch(onLoading())
     }, [])
+
     return (
-        <Result countries={countries}/>
+        <Result countries={showCountries}/>
     )
 }
 export default Home

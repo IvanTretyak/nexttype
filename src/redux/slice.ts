@@ -4,6 +4,7 @@ import reject from "lodash/reject";
 
 interface CountriesState {
     isLoading: boolean,
+    showFavorite: boolean,
     userCount: number,
     favoriteCollection: ICountries[],
     userGuessTown: ICountries,
@@ -18,6 +19,7 @@ interface CountriesState {
 
 const initialState: CountriesState = {
     isLoading: false,
+    showFavorite: false,
     userCount: 10,
     favoriteCollection: [{city: "", country: "", lat: "", lng: "", population: ""}],
     userGuessTown: {city: "", lat: "", lng: "", country: "", population: ""},
@@ -34,6 +36,9 @@ export const countrySlice = createSlice({
     name: "country",
     initialState,
     reducers: {
+        setShowFavorite: (state, action: PayloadAction<boolean>) => {
+            state.showFavorite = action.payload
+        },
         onLoading: (state) => {
             state.isLoading = true
         },
@@ -77,6 +82,7 @@ export const countrySlice = createSlice({
 });
 
 export const {
+    setShowFavorite,
     onLoading,
     addToUserCount,
     takeAwayToUserCount,

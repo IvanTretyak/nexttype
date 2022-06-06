@@ -4,7 +4,7 @@ import {onLoading, putCollection} from "../redux/slice"
 import {TResponse} from "../components/types";
 
 ///worker
-function* tryRerenderFavoriteCities() {
+function* tryGetCities() {
     try {
         const resp: TResponse = yield call(fetchCountries)
         yield put(putCollection(resp))
@@ -13,6 +13,7 @@ function* tryRerenderFavoriteCities() {
     }
 }
 
-export function* countryRemoveWatcher() {
-    yield takeEvery(onLoading, tryRerenderFavoriteCities);
+export function* getCountryWatcher() {
+    yield takeEvery(onLoading, tryGetCities);
 }
+

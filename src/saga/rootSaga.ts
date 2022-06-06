@@ -1,8 +1,8 @@
-import {countryRemoveWatcher} from "./countrySaga";
+import {getCountryWatcher} from "./countrySaga";
 import {all} from "redux-saga/effects";
 
 function* rootSaga() {
-    yield all([countryRemoveWatcher()]);
+    yield all([getCountryWatcher()]);
 }
 
 export default rootSaga;
