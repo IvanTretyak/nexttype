@@ -1,30 +1,18 @@
-import {useEffect, useState} from "react"
 import type {NextPage} from 'next'
-import {Container} from "@mui/material"
-import axios from "axios"
-import {IUser} from "../components/types"
-import Result from "../components/result"
+import {useEffect} from "react"
+import Result from "../src/components/result"
+import {onLoading} from "../src/redux/slice";
+import {useAppDispatch, useAppSelector} from "../src/redux/hooks"
+
 
 export const Home: NextPage = () => {
-    const [users, setUsers] = useState<IUser[]>([])
-
+    const countries = useAppSelector((state) => state.country.collection)
+    const dispatch = useAppDispatch()
     useEffect(() => {
-        fetchUsers()
+        dispatch(onLoading())
     }, [])
-
-    async function fetchUsers() {
-        try {
-            const response = await axios.get<IUser[]>("https://jsonplaceholder.typicode.com/users")
-            setUsers(response.data)
-        } catch (e) {
-            alert(e)
-        }
-    }
-
     return (
-        <Container>
-            <Result users={users}/>
-        </Container>
+        <Result countries={countries}/>
     )
 }
 export default Home

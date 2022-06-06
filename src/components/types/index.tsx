@@ -4,12 +4,8 @@ interface IAddress {
     zipcode: string;
 }
 
-export interface IUser {
-    name: string
-    username: string
-    email: string
-    address: IAddress
-    phone: string
+export interface TResponse {
+    data: ICountries[]
 }
 
 export interface ICountriesString {

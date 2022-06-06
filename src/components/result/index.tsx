@@ -1,8 +1,10 @@
-import React, {FC} from "react"
-import {Box, Stack, Typography} from "@mui/material"
+import React, {FC, forwardRef} from "react"
+import {Box, Container} from "@mui/material"
 import {ICountries} from "../types"
+import City from "../result/itemList/item"
 import {FixedSizeList as List} from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
+import Search from "../search"
 
 interface ResultProps {
     countries: ICountries[]
@@ -13,21 +15,40 @@ interface RowProps {
     style: any
 }
 
+const innerElementType = forwardRef(({style, ...rest}: any, ref: any) => {
+    return (
+        <Container>
+            <Search/>
+            <div
+                ref={ref}
+                style={{...style, height: `${parseFloat(style.height) + 200 * 2}px`}}
+                {...rest}
+            />
+        </Container>
+    )
+});
+innerElementType.displayName = "insert"
+
 const Result: FC<ResultProps> = ({countries}) => {
     const Row: FC<RowProps> = ({index, style}) => (
-        <Box sx={{border: "2px solid green", p: 3}} style={style}>
-            <Stack direction="column" spacing={2}>
-                <Typography variant="h1">{countries[index].city}</Typography>
-                <Typography variant="h4">{countries[index].country}</Typography>
-                <Typography variant="h5">{countries[index].population}</Typography>
-            </Stack>
+        <Box sx={{border: "2px solid green", p: 2}} style={{
+            ...style,
+            top: `${parseFloat(style.top) + 200}px`,
+            height: `${parseFloat(style.height) + 10}px`
+        }}>
+            <City city={countries[index]}/>
         </Box>
     );
 
-
     return (
         <>
-            <Box mt={10} height="70vh">
+            <Box
+                sx={{
+                    width: "100%",
+                    height: "98vh",
+                    maxWidth: "100vw",
+                }}
+            >
                 <AutoSizer>
                     {({height, width}) => (
                         <List
@@ -35,6 +56,7 @@ const Result: FC<ResultProps> = ({countries}) => {
                             height={height}
                             itemCount={countries.length}
                             itemSize={200}
+                            innerElementType={innerElementType}
                             width={width}
                         >
                             {Row}
