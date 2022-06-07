@@ -1,5 +1,5 @@
 import React, {FC, useEffect} from 'react';
-import {Button, Stack} from "@mui/material"
+import {Button, Stack, styled} from "@mui/material"
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks"
 import {putShowTown, setShowFavorite, setShowModal} from "../../../redux/slice"
 import {ICountries} from "../../types"
@@ -11,21 +11,34 @@ export function getRandomTown(array: ICountries[]) {
     return (array[randomCity])
 }
 
+const StyleButton = styled(Button)(({theme}) => ({
+    textTransform: "none",
+    color: theme.palette.text.secondary,
+    minWidth: "100px",
+    borderRadius: "30px",
+    backgroundColor: "#1C1C33",
+    "&:hover": {
+        color: "#ffffff",
+        backgroundColor: "#1C1C33",
+    }
+
+}))
+
 const Navigate: FC = () => {
     const allCollection = useAppSelector((state) => state.country.collection)
     const showModal = useAppSelector((state) => state.country.showModal)
     const showTown = useAppSelector((state) => state.country.showTown)
     const dispatch = useAppDispatch()
     useEffect(() => {
-        dispatch(setShowModal(true));
+        showTown.city && dispatch(setShowModal(true));
     }, [showTown])
     return (
         <>
             <Stack direction="row" spacing={2} mt={3}>
-                <Button onClick={() => dispatch(setShowFavorite(false))} variant='contained'>all</Button>
-                <Button onClick={() => dispatch(setShowFavorite(true))} variant='contained'>selected</Button>
-                <Button onClick={() => dispatch(putShowTown(getRandomTown(allCollection)))}
-                        variant='contained'>random</Button>
+                <StyleButton onClick={() => dispatch(setShowFavorite(false))} variant='contained'>all</StyleButton>
+                <StyleButton onClick={() => dispatch(setShowFavorite(true))} variant='contained'>selected</StyleButton>
+                <StyleButton onClick={() => dispatch(putShowTown(getRandomTown(allCollection)))}
+                             variant='contained'>random</StyleButton>
             </Stack>
             <SwipDrawer/>
         </>

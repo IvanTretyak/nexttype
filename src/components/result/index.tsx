@@ -21,7 +21,7 @@ const innerElementType = forwardRef(({style, ...rest}: any, ref: any) => {
             <Search/>
             <div
                 ref={ref}
-                style={{...style, height: `${parseFloat(style.height) + 200 * 2}px`}}
+                style={{...style, height: `${parseFloat(style.height) + 230 * 2}px`}}
                 {...rest}
             />
         </Container>
@@ -31,9 +31,9 @@ innerElementType.displayName = "insert"
 
 const Result: FC<ResultProps> = ({countries}) => {
     const Row: FC<RowProps> = ({index, style}) => (
-        <Box sx={{border: "2px solid green", p: 2}} style={{
+        <Box sx={{p: 2}} style={{
             ...style,
-            top: `${parseFloat(style.top) + 200}px`,
+            top: `${parseFloat(style.top) + 230}px`,
             height: `${parseFloat(style.height) + 10}px`
         }}>
             <City city={countries[index]}/>

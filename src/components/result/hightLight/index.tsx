@@ -7,7 +7,6 @@ interface HightLightProps {
 }
 
 const HightLight: FC<HightLightProps> =
-
     ({fillString, str}) => {
         console.log(fillString, str)
         if (!fillString) return str
