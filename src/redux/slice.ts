@@ -3,6 +3,7 @@ import {ICountries} from "../components/types"
 import reject from "lodash/reject";
 
 interface CountriesState {
+    showModal: boolean,
     isLoading: boolean,
     showFavorite: boolean,
     userCount: number,
@@ -13,11 +14,12 @@ interface CountriesState {
     collection: ICountries[],
     searchValue: string,
     coordinates: string[],
-    randomTown: ICountries,
+    showTown: ICountries,
     randomCoordinates: string[],
 }
 
 const initialState: CountriesState = {
+    showModal: false,
     isLoading: false,
     showFavorite: false,
     userCount: 10,
@@ -28,7 +30,7 @@ const initialState: CountriesState = {
     collection: [{city: "", country: "", lat: "", lng: "", population: ""}],
     searchValue: "",
     coordinates: ["1", "1"],
-    randomTown: {city: "", country: "", lat: "", lng: "", population: ""},
+    showTown: {city: "", country: "", lat: "", lng: "", population: ""},
     randomCoordinates: ["1", "1"],
 }
 
@@ -36,6 +38,9 @@ export const countrySlice = createSlice({
     name: "country",
     initialState,
     reducers: {
+        setShowModal: (state, action: PayloadAction<boolean>) => {
+            state.showModal = action.payload
+        },
         setShowFavorite: (state, action: PayloadAction<boolean>) => {
             state.showFavorite = action.payload
         },
@@ -54,8 +59,8 @@ export const countrySlice = createSlice({
         putVariantCollection: (state, action) => {
             state.variantCollection = action.payload;
         },
-        putRandomTown: (state, action) => {
-            state.randomTown = action.payload;
+        putShowTown: (state, action) => {
+            state.showTown = action.payload;
         },
         putCollection: (state, action: PayloadAction<any>) => {
             state.collection = action.payload;
@@ -82,20 +87,15 @@ export const countrySlice = createSlice({
 });
 
 export const {
+    setShowModal,
     setShowFavorite,
     onLoading,
-    addToUserCount,
-    takeAwayToUserCount,
-    putVariantCollection,
-    putRandomTown,
-    putUserGuessTown,
-    putRandomCoordinates,
+    putShowTown,
     putCollection,
     putSearchValue,
     putFavoriteCities,
     removeFavoriteCities,
     putShowCollection,
-    putChoiceCoordinates,
 } = countrySlice.actions;
 
 export default countrySlice.reducer;

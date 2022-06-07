@@ -1,7 +1,7 @@
 import React, {FC, forwardRef} from "react"
 import {Box, Container} from "@mui/material"
 import {ICountries} from "../types"
-import City from "../result/itemList/item"
+import City from "../result/item"
 import {FixedSizeList as List} from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
 import Search from "../search"
@@ -28,6 +28,7 @@ const innerElementType = forwardRef(({style, ...rest}: any, ref: any) => {
     )
 });
 innerElementType.displayName = "insert"
+
 const Result: FC<ResultProps> = ({countries}) => {
     const Row: FC<RowProps> = ({index, style}) => (
         <Box sx={{border: "2px solid green", p: 2}} style={{

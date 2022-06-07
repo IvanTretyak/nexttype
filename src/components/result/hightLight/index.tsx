@@ -9,6 +9,7 @@ interface HightLightProps {
 const HightLight: FC<HightLightProps> =
 
     ({fillString, str}) => {
+        console.log(fillString, str)
         if (!fillString) return str
         const regExp = new RegExp(fillString, "ig")
         const matchValue = str.match(regExp)
