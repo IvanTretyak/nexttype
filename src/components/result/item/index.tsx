@@ -12,7 +12,8 @@ interface CityProps {
 
 const StButton = styled(Button)(({theme}) => ({
     textTransform: "none",
-    maxWidth: "150px",
+    maxWidth: "170px",
+    minWidth: "150px",
 }))
 
 const City: FC<CityProps> = ({city}) => {
@@ -38,7 +39,7 @@ const City: FC<CityProps> = ({city}) => {
                             <Typography color="text.secondary" variant="body1">{city.population}</Typography>
                         </Stack>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={4} display="flex" justifyContent="flex-end">
                         <Stack direction="column" spacing={2}>
                             <StButton onClick={() => dispatch(putShowTown(city))} variant="outlined">See on
                                 map</StButton>

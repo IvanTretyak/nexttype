@@ -1,11 +1,10 @@
 import {createTheme, responsiveFontSizes} from '@mui/material/styles';
 
-
 let theme = createTheme({
     palette: {
         primary: {
             main: "#6E42CA",
-            light: "#14072E",
+            light: "#ce93d8",
             dark: "#6E42CA",
         },
         secondary: {
