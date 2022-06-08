@@ -5,7 +5,7 @@ import Navigate from "../search/navigate"
 
 const Search: FC = () => {
     return (
-        <Box mt={3}>
+        <Box mt={10}>
             <SearchTextField/>
             <Navigate/>
         </Box>

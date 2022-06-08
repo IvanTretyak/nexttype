@@ -8,6 +8,10 @@ export interface TResponse {
     data: ICountries[]
 }
 
+export interface ISearchValue {
+    value: string
+}
+
 export interface ICountriesString {
     data: string
 }
