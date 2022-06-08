@@ -31,7 +31,7 @@ innerElementType.displayName = "insert"
 
 const Result: FC<ResultProps> = ({countries}) => {
     const Row: FC<RowProps> = ({index, style}) => (
-        <Box sx={{p: 3}} style={{
+        <Box sx={{p: 1}} style={{
             ...style,
             top: `${parseFloat(style.top) + 230}px`,
             height: `${parseFloat(style.height) + 10}px`

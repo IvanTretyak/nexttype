@@ -14,6 +14,10 @@ const StButton = styled(Button)(({theme}) => ({
     textTransform: "none",
     maxWidth: "170px",
     minWidth: "150px",
+    "&:hover": {
+        color: "#ffffff",
+        backgroundColor: "#6E42CA",
+    }
 }))
 
 const City: FC<CityProps> = ({city}) => {
@@ -41,8 +45,9 @@ const City: FC<CityProps> = ({city}) => {
                     </Grid>
                     <Grid item xs={4} display="flex" justifyContent="flex-end">
                         <Stack direction="column" spacing={2}>
-                            <StButton onClick={() => dispatch(putShowTown(city))} variant="outlined">See on
-                                map</StButton>
+                            <StButton onClick={() => dispatch(putShowTown(city))} variant="outlined">
+                                See on map
+                            </StButton>
                             {showFavorite ? <StButton
                                     onClick={() => {
                                         dispatch(removeFavoriteCities(city));
